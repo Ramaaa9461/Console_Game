@@ -11,7 +11,7 @@ namespace Game
         protected Coordinates position = new Coordinates();
 
         private int upLimit = 3;
-        private int downLimit = Console.WindowHeight - 2;
+        private int downLimit = Console.WindowHeight - 4;
         private int leftLimit = 1;
         private int rigthLimit = Console.WindowWidth - 2;
 
@@ -20,7 +20,11 @@ namespace Game
             private set { position = value; }
             get { return position; }
         }
-
+        public ConsoleColor Color
+        {
+            private set { color = value; }
+            get { return color; }
+        }
         public Entity(char letter, ConsoleColor color)
         {
             RespawnRandomPosition();
@@ -35,7 +39,7 @@ namespace Game
             position.y = random.Next(upLimit, downLimit);
         }
 
-        protected void setLimits()
+        public void setLimits()
         {
             if (position.x > rigthLimit)
             {
@@ -57,7 +61,7 @@ namespace Game
                 position.y = downLimit;
             }
         }
-        protected void ClearCurrentPosition()
+        public void ClearCurrentPosition()
         {
             Console.SetCursorPosition(position.x, position.y);
             Console.Write(' ');
