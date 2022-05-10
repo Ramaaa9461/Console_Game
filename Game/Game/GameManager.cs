@@ -32,7 +32,7 @@ namespace Game
         private void Update()
         {
             character.Input();
-            enemy.Move();
+            //enemy.Move();
 
             if (character.Position == enemy.Position)
             {
@@ -51,7 +51,7 @@ namespace Game
             character.DrawCharacter();
             enemy.DrawEnemy();
 
-            Thread.Sleep(30);
+          //  Thread.Sleep(30);
         }
 
     }

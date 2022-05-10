@@ -4,12 +4,11 @@ using System.Text;
 
 namespace Game
 {
-    class Character
+    class Character : Entity 
     {
         private int life = 5;
         int points = 0;
-        char letter;
-        Coordinates position = new Coordinates();
+     
 
         public int Life
         {
@@ -21,23 +20,17 @@ namespace Game
             private set;
             get;
         }
-        public Coordinates Position
-        {
-            private set;
-            get;
-        }
-
-
-        public Character(char letter)
+        public Character(char letter) : base(letter)
         {
             RespawnCharacter();
-            this.letter = letter;
         }
+         
 
         public void Input(int value = 1)
         {
             if (Console.KeyAvailable)
             {
+                ClearCurrentPosition();
 
                 ConsoleKeyInfo cki = Console.ReadKey();
 
@@ -61,10 +54,12 @@ namespace Game
                     case ConsoleKey.LeftArrow:
 
                         position.x -= value;
-
+                       
                         break;
 
                 }
+
+                setLimits();
 
             }
         }
@@ -81,17 +76,13 @@ namespace Game
             Console.SetCursorPosition(position.x, position.y);
             Console.Write(letter);
         }
-        public void RespawnCharacter()
-        {
-            Random random = new Random();
-            position.x = random.Next(0, Console.WindowHeight);
-            position.y = random.Next(0, Console.WindowHeight);
-
-        }
+   
         public bool isAlive()
         {
             return life == 0;
         }
+
+   
     }
 
 
